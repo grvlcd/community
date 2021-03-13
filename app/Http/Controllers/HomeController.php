@@ -2,19 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
-        $posts = Post::with(['user'])->get();
+        $community_id = Auth::user()->communities()->pluck('community_id')->toArray();
+        $posts = Post::whereIn('community_id', $community_id)->get();
         return view('home')->with(['posts' => $posts]);
     }
 }

@@ -9,6 +9,7 @@ class PostController extends Controller
 {
     public function show(Post $post)
     {
+        $post->comments;
         return view('posts.show')->with(['post' => $post]);
     }
 }

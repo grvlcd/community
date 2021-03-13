@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <x-post-card :post="$post" />
+<div class="mt-4">
+    <x-post-card-detail :post="$post" />
+</div>
 @endsection
