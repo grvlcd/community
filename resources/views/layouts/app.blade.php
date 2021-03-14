@@ -51,6 +51,9 @@
                                     {{ __('My Communities') }}
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="text-white dropdown-item bg-danger" href="#">
+                                        {{ __('Find your community') }}
+                                    </a>
                                     @foreach (Auth::user()->communities as $community)
                                         <a class="dropdown-item" href="{{ route('communities.show', $community) }}">
                                             {{ $community->name }}
@@ -86,7 +89,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
+                                                document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 

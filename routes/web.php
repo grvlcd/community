@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\CommunityController;
@@ -26,5 +27,6 @@ Auth::routes();
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::resource('posts', PostController::class);
+    Route::post('comment/{post}', [CommentController::class, 'store'])->name('comment.post.store');
     Route::resource('communities', CommunityController::class);
 });

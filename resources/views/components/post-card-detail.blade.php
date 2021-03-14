@@ -14,10 +14,10 @@
             </div>
         </div>
         <x-post-comment :comments="$post->comments" />
-        <form method="POST">
+        <form method="POST" action="{{ route('comment.post.store', $post) }}">
+            @csrf
             <div class="mb-2 col-12 input-group">
-                @csrf
-                <input type="text" class="form-control" placeholder="Write comment...">
+                <input type="text" name="body" class="form-control" placeholder="Write comment...">
                 <button type="submit" class="rounded-0 btn btn-primary">></button>
             </div>
         </form>

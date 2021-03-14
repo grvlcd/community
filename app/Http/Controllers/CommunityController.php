@@ -10,6 +10,7 @@ class CommunityController extends Controller
 {
     public function update(CommunityRequest $request, Community $community)
     {
+        // This is actually the store method, I just need the community id to reference the community_id to the post.
         $user = $request->user();
         $user->posts()->create([
             'post' => $request->post,
