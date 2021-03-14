@@ -43,22 +43,24 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="mr-auto navbar-nav">
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ __('My Communities') }}
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                @foreach (Auth::user()->communities as $community)
-                                    <a class="dropdown-item" href="{{ route('communities.show', $community) }}">
-                                        {{ $community->name }}
-                                    </a>
-                                @endforeach
+                    @auth
+                        <ul class="mr-auto navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ __('My Communities') }}
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @foreach (Auth::user()->communities as $community)
+                                        <a class="dropdown-item" href="{{ route('communities.show', $community) }}">
+                                            {{ $community->name }}
+                                        </a>
+                                    @endforeach
+                                </div>
+                            </li>
+                        </ul>
+                    @endauth
 
-                            </div>
-                        </li>
-                    </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="ml-auto navbar-nav">
@@ -84,7 +86,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
+                                document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 

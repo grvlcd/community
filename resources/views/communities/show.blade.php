@@ -5,6 +5,8 @@
     <div class="container">
         <h1 class="display-4">{{ $community->name }}</h1>
         <p class="lead">{{ $community->description }}</p>
+        <p class="text-muted">Total members: <strong>{{$community->users->count()}}</strong></p>
+        <p class="text-muted">Total posts per day: Will be added soon</p>
     </div>
 </div>
 
