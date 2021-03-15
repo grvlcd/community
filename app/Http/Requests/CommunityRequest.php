@@ -24,7 +24,8 @@ class CommunityRequest extends FormRequest
     public function rules()
     {
         return [
-            'post' => 'required'
+            'name' => 'required',
+            'description' => ['required', 'max:1000'],
         ];
     }
 }

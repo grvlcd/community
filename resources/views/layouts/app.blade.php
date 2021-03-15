@@ -60,7 +60,6 @@
                     </ul>
                     @endauth
 
-
                     <!-- Right Side Of Navbar -->
                     <ul class="ml-auto navbar-nav">
                         <!-- Authentication Links -->

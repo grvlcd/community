@@ -8,6 +8,16 @@ use App\Http\Requests\CommunityRequest;
 
 class CommunityController extends Controller
 {
+    public function store(CommunityRequest $request)
+    {
+        dd($request);
+    }
+
+    public function create()
+    {
+        return view('communities.create');
+    }
+
     public function show(Community $community)
     {
         $community->users;
