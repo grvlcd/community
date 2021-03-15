@@ -18,6 +18,7 @@ class CreateCommunityUserTable extends Migration
             $table->foreignId('user_id');
             $table->foreignId('community_id');
             $table->bigInteger('members');
+            $table->foreignId('owner_id')->references('id')->on('users');
             // $table->timestamps();
         });
     }

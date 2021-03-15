@@ -26,7 +26,9 @@ Route::middleware(['guest'])->group(function () {
 Auth::routes();
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::resource('posts', PostController::class);
-    Route::post('comment/{post}', [CommentController::class, 'store'])->name('comment.post.store');
+    Route::post('posts/{community}/create', [PostController::class, 'store'])->name('posts.store');
+    Route::resource('posts', PostController::class)->except(['store']);
     Route::resource('communities', CommunityController::class);
+    Route::post('comment/{post}', [CommentController::class, 'store'])->name('comment.post.store');
+    Route::resource('comments', CommentController::class)->except('store');
 });

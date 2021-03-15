@@ -3,11 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
+use App\Models\Community;
 use Illuminate\Http\Request;
 use App\Models\Post;
 
 class PostController extends Controller
 {
+    public function store(PostRequest $request, Community $community)
+    {
+        $user = $request->user();
+        $user->posts()->create([
+            'post' => $request->post,
+            'community_id' => $community->id,
+            'status' => 'new',
+        ]);
+        return redirect()->route('communities.show', $community);
+    }
+
     public function show(Post $post)
     {
         $post->comments;

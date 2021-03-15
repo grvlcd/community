@@ -25,9 +25,9 @@ class DatabaseSeeder extends Seeder
             });
 
         $communities = Community::factory()->count(10)->create()
-            ->each(function ($community) use ($users) {
+            ->each(function ($community) {
                 $users = User::inRandomOrder()->take(rand(1, 5))->pluck('id');
-                $community->users()->attach($users, ['members' => $users->count()]);
+                $community->users()->attach($users, ['members' => $users->count(), 'owner_id' => $users->random()]);
             });
 
         $posts = Post::factory()->count(100)->make()

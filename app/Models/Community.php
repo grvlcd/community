@@ -18,6 +18,13 @@ class Community extends Model
     public function users()
     {
         return $this->belongsToMany(User::class)
+            ->withPivot(['owner_id'])
+            ->using(CommunityOwner::class);
+    }
+
+    public function owner()
+    {
+        return $this->belongsToMany(User::class)
             ->withPivot(['members']);
     }
 
