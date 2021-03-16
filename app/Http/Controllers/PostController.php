@@ -12,11 +12,16 @@ class PostController extends Controller
     public function store(PostRequest $request, Community $community)
     {
         $user = $request->user();
-        $user->posts()->create([
+        $post = $user->posts()->create([
             'post' => $request->post,
             'community_id' => $community->id,
             'status' => 'new',
         ]);
+        if ($request->hasFile('image')) {
+            $post->images()->create([
+                'path' => $request->image->store('posts', 'images'),
+            ]);
+        }
         return redirect()->route('communities.show', $community);
     }
 

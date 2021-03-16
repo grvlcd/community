@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Community;
 use App\Http\Requests\CommunityRequest;
+use App\Models\Image;
 
 class CommunityController extends Controller
 {
@@ -17,7 +18,15 @@ class CommunityController extends Controller
 
     public function store(CommunityRequest $request)
     {
-        dd($request);
+        $user = $request->user();
+        $community = Community::create($request->validated());
+        $community->users()->attach($user, ['owner_id' => $user->id, 'members' => 1]);
+        if ($request->hasFile('image')) {
+            $community->image()->create([
+                'path' => $request->image->store('community', 'images'),
+            ]);
+        }
+        return redirect()->route('communities.show', $community);
     }
 
     public function create()

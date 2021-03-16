@@ -6,14 +6,20 @@
                     <a href="{{ route('communities.show', $post->community->id) }}">
                         {{ $post->community->name }}</a> / {{ $post->user->name }}
                 </h5>
-                <p class=" card-text"><small class="text-muted">Posted
-                        {{ $post->created_at->diffForHumans() }}</small></p>
             </div>
             <div class="rounded bg-light">
                 <p class="p-2 card-text">{{ $post->post }}</p>
             </div>
+            <p class=" card-text">
+                <small class="text-muted">Posted
+                    {{ $post->created_at->diffForHumans() }}
+                </small>
+            </p>
         </div>
-        <x-post-comment :comments="$post->comments" />
+        <div class="d-flex flex-column">
+            <h4 class="mx-3">Comments: </h4>
+            <x-post-comment :comments="$post->comments" />
+        </div>
         <form method="POST" action="{{ route('comment.post.store', $post) }}">
             @csrf
             <div class="mb-2 col-12 input-group">
