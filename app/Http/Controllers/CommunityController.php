@@ -8,6 +8,13 @@ use App\Http\Requests\CommunityRequest;
 
 class CommunityController extends Controller
 {
+    public function index()
+    {
+        $community_id = auth()->user()->communities()->pluck('community_id')->toArray();
+        $communities = Community::with('owner')->whereNotIn('id', $community_id)->get();
+        return view('communities.index')->with(['communities' => $communities]);
+    }
+
     public function store(CommunityRequest $request)
     {
         dd($request);

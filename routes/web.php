@@ -4,6 +4,7 @@ use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\CommunityController;
+use App\Http\Controllers\CommunityUser;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 
@@ -26,9 +27,19 @@ Route::middleware(['guest'])->group(function () {
 Auth::routes();
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+    // Posts
     Route::post('posts/{community}/create', [PostController::class, 'store'])->name('posts.store');
     Route::resource('posts', PostController::class)->except(['store']);
+    // --
+
+    // Communities
     Route::resource('communities', CommunityController::class);
+    Route::post('communities/{community}/join', [CommunityUser::class, 'store'])->name('community.join.store');
+    // --
+
+    // Comments
     Route::post('comment/{post}', [CommentController::class, 'store'])->name('comment.post.store');
     Route::resource('comments', CommentController::class)->except('store');
+    // --
 });

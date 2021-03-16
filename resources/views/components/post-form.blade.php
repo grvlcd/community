@@ -3,7 +3,7 @@
         @csrf
         <div class="form-group">
             <label for="post">Post Body</label>
-            <textarea class="form-control @error('post') border border-danger @enderror" id="post" placeholder="What do you wan't to share?" name="post" rows="1"></textarea>
+            <textarea class="form-control @error('post') border border-danger @enderror" id="post" placeholder="What do you wan't to share?" name="post" rows="2"></textarea>
             @error('post')
             <p class="text-danger"><strong>{{ $message }}</strong></p>
             @enderror

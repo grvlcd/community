@@ -47,7 +47,7 @@
                                 {{ __('My Communities') }}
                             </a>
                             <div class="px-2 dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="text-center text-white rounded dropdown-item bg-primary" href="#">
+                                <a class="text-center text-white rounded dropdown-item bg-primary" href="{{route('communities.index')}}">
                                     {{ __('Browse more community') }}
                                 </a>
                                 @foreach (Auth::user()->communities as $community)
