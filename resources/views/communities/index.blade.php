@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     <div class="container py-4">
         @foreach ($communities as $community)
             <div class="mb-4 card">
@@ -9,7 +8,10 @@
                     Insert Category Here
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">{{ $community->name }}</h5>
+                    <h5 class="card-title">
+                        <a href="{{ route('communities.show', $community) }}">{{ $community->name }}
+                        </a>
+                    </h5>
                     @foreach ($community->owner as $owner)
                         @if ($loop->last)
                             {{ $owner->pivot->members }} {{ Str::plural('member', $owner->pivot->members) }}
@@ -23,6 +25,5 @@
                 </div>
             </div>
         @endforeach
-
     </div>
 @endsection

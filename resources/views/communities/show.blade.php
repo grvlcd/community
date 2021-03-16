@@ -8,6 +8,12 @@
             <p class="text-muted">Total members: <strong>{{ $community->users->count() }}</strong></p>
             <p class="text-muted">Community created by <strong>{{ $community->users[0]->pivot->owner->name }}</strong></p>
             <p class="text-muted">Total posts per day: Will be added soon</p>
+            @if (!in_array(auth()->user()->id, $community->users->pluck('id')->toArray()))
+                <form method="POST" action="{{ route('community.join.store', $community) }}">
+                    @csrf
+                    <button type="submit" class="px-4 py-1 btn btn-primary">{{ __('Join') }}</button>
+                </form>
+            @endif
         </div>
     </div>
 
