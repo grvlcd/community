@@ -7,6 +7,7 @@ use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\CommunityUser;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,15 @@ Route::middleware(['guest'])->group(function () {
 
 Auth::routes();
 Route::middleware(['auth'])->group(function () {
+
+    // Home
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+    // --
+
+    // User Profile
+    Route::get('profile/edit', [UserController::class, 'edit'])->name('profile.edit');
+    Route::put('profile/update', [UserController::class, 'update'])->name('profile.update');
+    // --
 
     // Posts
     Route::post('posts/{community}/create', [PostController::class, 'store'])->name('posts.store');
