@@ -83,7 +83,7 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <div id="navbarDropdown" class="chip nav-link" role=" button" data-toggle="dropdown"
+                                <div id="navbarDropdown" class="chip nav-link" role="button" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
                                     <img src="{{ asset('images/' . Auth::user()->image->path) }}" alt="Person" width="24"
                                         height="24">
@@ -92,14 +92,12 @@
                                     </a>
                                 </div>
 
-
-
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('profile.edit') }}">
                                         {{ __('Profile') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
+                                        document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

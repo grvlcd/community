@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="m-auto col-6">
+<div class="mx-auto mt-4 col-6">
     <form action="{{ route('posts.update', $post) }}" method="POST">
         @csrf
         @method('PATCH')

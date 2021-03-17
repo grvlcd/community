@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PostRequest;
 use App\Models\Community;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Post;
 
 class PostController extends Controller
@@ -46,6 +47,12 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $this->authorize('delete', $post);
+        if ($post->images != null) {
+            foreach ($post->images as $image) {
+                Storage::disk('images')->delete($image->path);
+                $image->delete();
+            }
+        }
         $post->delete();
         return redirect()->route('home');
     }
