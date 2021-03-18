@@ -6,11 +6,11 @@ use Illuminate\View\Component;
 
 class PostCarousel extends Component
 {
-    public $images;
+    public $post;
 
-    public function __construct($images)
+    public function __construct($post)
     {
-        $this->images = $images;
+        $this->post = $post;
     }
 
     /**

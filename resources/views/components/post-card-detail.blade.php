@@ -39,9 +39,7 @@
             </p>
             <div class="p-0">
                 @if (isset($post->images) && !$post->images->isEmpty())
-                    @foreach ($post->images as $image)
-                        <img src="{{ asset('images/' . $image->path) }}" width="100%" height="75%">
-                    @endforeach
+                    <x-post-carousel :post="$post" />
                 @endif
             </div>
 

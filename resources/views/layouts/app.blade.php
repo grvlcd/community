@@ -52,10 +52,16 @@
                                     {{ __('My Communities') }}
                                 </a>
                                 <div class="px-2 dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="text-center text-white rounded dropdown-item bg-primary"
-                                        href="{{ route('communities.index') }}">
-                                        {{ __('Browse more community') }}
-                                    </a>
+                                    <div class="mb-2">
+                                        <a class="mb-2 text-center text-white rounded dropdown-item bg-success"
+                                            href="{{ route('communities.create') }}">
+                                            {{ __('Create a community') }}
+                                        </a>
+                                        <a class="text-center text-white rounded dropdown-item bg-primary"
+                                            href="{{ route('communities.index') }}">
+                                            {{ __('Browse more community') }}
+                                        </a>
+                                    </div>
                                     @foreach (Auth::user()->communities as $community)
                                         <a class="dropdown-item" href="{{ route('communities.show', $community) }}">
                                             {{ $community->name }}
@@ -85,8 +91,9 @@
                             <li class="nav-item dropdown">
                                 <div id="navbarDropdown" class="chip nav-link" role="button" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
-                                    <img src="{{ asset('images/' . Auth::user()->image->path) }}" alt="Person" width="24"
-                                        height="24">
+                                    <img class="border rounded-circle border-secondary"
+                                        src="{{ asset('images/' . Auth::user()->image->path) }}"
+                                        alt="{{ Auth::user()->name }}" width="24" height="24">
                                     <a class="text-muted text-decoration-none dropdown-toggle" v-pre>
                                         {{ Auth::user()->name }}
                                     </a>
