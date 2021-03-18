@@ -1,11 +1,36 @@
-<div class="m-auto col-6">
+<div class="m-auto col-lg-6 col-md-12">
     <div class="mb-3 card">
         <div class="p-3">
-            <div class="flex-column justify-content-between">
+            <div class="d-flex justify-content-between">
                 <h5 class="card-title">
                     <a href="{{ route('communities.show', $post->community->id) }}">
                         {{ $post->community->name }}</a> / {{ $post->user->name }}
                 </h5>
+                <ul class="ml-auto navbar-nav">
+                    <li class="nav-item dropdown">
+                        <div id="navbarDropdown" class="nav-link" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <a class="text-muted text-decoration-none dropdown-toggle" v-pre>
+
+                            </a>
+                        </div>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item text-primary" href="#">
+                                {{ __('Save') }}
+                            </a>
+                            @can(['update', 'delete'], $post)
+                                <a class="dropdown-item text-success" href="{{ route('posts.edit', $post) }}">
+                                    {{ __('Edit') }}
+                                </a>
+                                <form action="{{ route('posts.destroy', $post) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="dropdown-item text-danger">Delete</button>
+                                </form>
+                            @endcan
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
         <div class="p-0 card-body">

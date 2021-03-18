@@ -97,7 +97,7 @@
                                         {{ __('Profile') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
+                                    document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -113,13 +113,13 @@
 
         @if (isset($errors) && $errors->any())
             @foreach ($errors->all() as $error)
-                <div class="alert alert-danger" role="alert">
+                <div class="mx-auto text-center col-6 alert alert-danger" role="alert">
                     {{ $error }}
                 </div>
             @endforeach
         @endif
         @if (session()->has('success'))
-            <div class="alert alert-success" role="alert">
+            <div class="mx-auto text-center col-6 alert alert-success" role="alert">
                 {{ session()->get('success') }}
             </div>
         @endif

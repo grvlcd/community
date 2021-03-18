@@ -25,6 +25,8 @@
                 @csrf
                 <button type="submit" class="px-4 py-1 btn btn-primary">{{ __('Join') }}</button>
             </form>
+        @else
+            <button type="button" disabled class="px-4 py-1 btn btn-secondary">{{ __('Joined') }}</button>
         @endif
     </div>
     </div>
