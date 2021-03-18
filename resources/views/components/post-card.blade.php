@@ -15,14 +15,16 @@
                 <div>
                     <ul class="ml-auto navbar-nav">
                         <li class="nav-item dropdown">
-                            <div id="navbarDropdown" class="nav-link" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
+                            <div id="navbarDropdown" class="nav-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <a class="text-muted text-decoration-none dropdown-toggle" v-pre>
-                                    more...
+
                                 </a>
                             </div>
-
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item text-primary" href="#">
+                                    {{ __('Save') }}
+                                </a>
+                                @can(['update', 'delete'], $post)
                                 <a class="dropdown-item text-success" href="{{ route('posts.edit', $post) }}">
                                     {{ __('Edit') }}
                                 </a>
@@ -31,6 +33,8 @@
                                     @method('DELETE')
                                     <button type="submit" class="dropdown-item text-danger">Delete</button>
                                 </form>
+
+                                @endcan
                             </div>
                         </li>
                     </ul>
@@ -42,9 +46,9 @@
                 </p>
                 <div class="w-auto ">
                     @if (isset($post->images) && !$post->images->isEmpty())
-                        @foreach ($post->images as $image)
-                            <img src="{{ asset('images/' . $image->path) }}" width="100%" height="75%">
-                        @endforeach
+                    @foreach ($post->images as $image)
+                    <img src="{{ asset('images/' . $image->path) }}" width="100%" height="75%">
+                    @endforeach
                     @endif
                 </div>
             </div>
@@ -52,9 +56,9 @@
                 <div class="text-muted">{{ $post->created_at->diffForHumans() }}</div>
                 <div class="text-muted">
                     @if ($post->comments->isEmpty())
-                        Start the discussion!
+                    Start the discussion!
                     @else
-                        {{ $post->comments->count() }} {{ Str::plural('comment', $post->comments->count()) }}
+                    {{ $post->comments->count() }} {{ Str::plural('comment', $post->comments->count()) }}
                     @endif
                 </div>
                 <div class="text-muted">

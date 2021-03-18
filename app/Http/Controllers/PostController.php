@@ -7,11 +7,13 @@ use App\Models\Community;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Post;
+use Image;
 
 class PostController extends Controller
 {
     public function store(PostRequest $request, Community $community)
     {
+
         $user = $request->user();
         $post = $user->posts()->create([
             'post' => $request->post,
@@ -19,8 +21,12 @@ class PostController extends Controller
             'status' => 'new',
         ]);
         if ($request->hasFile('image')) {
+            $img = $request->image->store('posts', 'images');
+            $image_resize = Image::make(storage_path('app/public/images/' . $img))->resize(1200, 730, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(storage_path('app/public/images/' . $img));
             $post->images()->create([
-                'path' => $request->image->store('posts', 'images'),
+                'path' => 'posts/' . $image_resize->basename,
             ]);
         }
         return redirect()->route('communities.show', $community);
