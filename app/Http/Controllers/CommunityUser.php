@@ -13,6 +13,6 @@ class CommunityUser extends Controller
         $user = $request->user();
         $members = $community->owner[0]->pivot->members;
         $community->users()->attach($user, ['owner_id' => $community->owner[0]->id, 'members' => $members + 1]);
-        return redirect()->route('communities.show', $community);
+        return redirect()->route('communities.show', $community)->withSuccess('You\'re now joined to ' . $community->name);
     }
 }

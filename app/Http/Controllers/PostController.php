@@ -47,7 +47,7 @@ class PostController extends Controller
     {
         $this->authorize('update', $post);
         $post->update($request->validated());
-        return redirect()->route('posts.show', $post);
+        return redirect()->route('posts.show', $post)->withSuccess('Post is up to date!');
     }
 
     public function destroy(Post $post)
@@ -60,6 +60,6 @@ class PostController extends Controller
             }
         }
         $post->delete();
-        return redirect()->route('home');
+        return redirect()->route('home')->withSuccess("Your post has been deleted!");
     }
 }

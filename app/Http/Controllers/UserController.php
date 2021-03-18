@@ -34,7 +34,7 @@ class UserController extends Controller
             $user->password = Hash::make($request->password);
         }
         $user->save();
-        return redirect()->route('profile.edit');
+        return redirect()->route('profile.edit')->withSuccess('Profile is up to date!');
     }
 
     public function edit()

@@ -26,7 +26,7 @@ class CommunityController extends Controller
                 'path' => $request->image->store('community', 'images'),
             ]);
         }
-        return redirect()->route('communities.show', $community);
+        return redirect()->route('communities.show', $community)->withSuccess('Community created successfully!');
     }
 
     public function create()
