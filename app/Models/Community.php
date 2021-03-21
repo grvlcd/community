@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Image;
+use App\Models\Tag;
 
 class Community extends Model
 {
@@ -32,6 +33,11 @@ class Community extends Model
     public function posts()
     {
         return $this->hasMany(Post::class);
+    }
+
+    public function tags()
+    {
+        return $this->morphMany(Tag::class, 'taggable');
     }
 
     public function image()

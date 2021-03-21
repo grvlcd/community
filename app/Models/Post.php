@@ -8,6 +8,7 @@ use App\Models\Image;
 use App\Models\User;
 use App\Models\Community;
 use App\Models\Comment;
+use App\Models\Tag;
 
 class Post extends Model
 {
@@ -38,5 +39,10 @@ class Post extends Model
     public function images()
     {
         return $this->morphMany(Image::class, 'imageable');
+    }
+
+    public function tags()
+    {
+        return $this->morphMany(Tag::class, 'taggable');
     }
 }
