@@ -45,6 +45,12 @@
                 <p class="mx-2 mt-2 card-text">
                     {{ $post->post }}
                 </p>
+                <div class="mx-2 mb-1 ">
+                    @foreach ($post->tags as $tag)
+                        {{ $loop->first ? '' : ', ' }}
+                        <a href="#" class="text-sm">{{ $tag->name }}</a>
+                    @endforeach
+                </div>
                 <div class="w-auto ">
                     @if (isset($post->images) && !$post->images->isEmpty())
                         <x-post-carousel :post="$post" />
