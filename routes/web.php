@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\CommunityUser;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 
@@ -41,6 +42,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('posts/{community}/create', [PostController::class, 'store'])->name('posts.store');
     Route::resource('posts', PostController::class)->except(['store']);
     // --
+
+
+    // Images
+    Route::delete('images/{image}/delete', [ImageController::class, 'destroy'])->name('image.destroy');
+    // Images
 
     // Communities
     Route::resource('communities', CommunityController::class);

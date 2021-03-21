@@ -104,7 +104,7 @@
                                         {{ __('Profile') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
+                                                        document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -136,5 +136,6 @@
         </main>
     </div>
 </body>
+<script src="{{ asset('js/main.js') }}"></script>
 
 </html>

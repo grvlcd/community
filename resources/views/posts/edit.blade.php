@@ -7,7 +7,8 @@
                 <div class="card">
                     <div class="card-header">{{ __('Update post') }}</div>
                     <div class="card-body">
-                        <form action="{{ route('posts.update', $post) }}" method="POST" enctype="multipart/form-data">
+                        <form id="updatePostForm" action="{{ route('posts.update', $post) }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             @method('PATCH')
                             <div class="form-group row">
@@ -23,12 +24,12 @@
                                     @enderror
                                 </div>
                             </div>
-                            {{ $post->images }}
                             <div class="form-group row">
-                                <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Image') }}</label>
+                                <label for="image"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Add more images') }}</label>
                                 <div class="col-md-6">
                                     <input type="file" class="form-control @error('image') is-invalid @enderror"
-                                        name="image" required>
+                                        name="image[]" multiple>
                                     @error('post')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -36,14 +37,33 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="mb-0 form-group row">
-                                <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Update!') }}
-                                    </button>
+                        </form>
+                        <div class="form-group row">
+                            <label for="image"
+                                class="col-md-4 col-form-label text-md-right">{{ __('Current Images') }}</label>
+                            <div class="col-12">
+                                <div class="flex-row flex-wrap d-flex justify-content-center">
+                                    @foreach ($post->images as $image)
+                                        <div id="image-container">
+                                            <img class="img-thumbnail" src="{{ asset('images/' . $image->path) }}" />
+                                            <form action="{{ route('image.destroy', $image) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="deleteImageBtn btn btn-danger btn-sm"
+                                                    type="submit">Delete</button>
+                                            </form>
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
-                        </form>
+                        </div>
+                        <div class="mb-0 form-group row">
+                            <div class="col-md-8 offset-md-4">
+                                <button type="button" class="btn btn-primary" id="updatePostButton">
+                                    {{ __('Update!') }}
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -47,6 +47,17 @@ class PostController extends Controller
     {
         $this->authorize('update', $post);
         $post->update($request->validated());
+        if ($request->hasFile('image')) {
+            foreach ($request->image as $image) {
+                $img = $image->store('posts', 'images');
+                $image_resize = Image::make(storage_path('app/public/images/' . $img))->resize(1200, 730, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save(storage_path('app/public/images/' . $img));
+                $post->images()->create([
+                    'path' => 'posts/' . $image_resize->basename,
+                ]);
+            }
+        }
         return redirect()->route('posts.show', $post)->withSuccess('Post is up to date!');
     }
 
