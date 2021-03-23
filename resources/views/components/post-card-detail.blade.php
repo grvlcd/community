@@ -37,19 +37,23 @@
             <p class="px-3 card-text">
                 {{ $post->post }}
             </p>
+            <div class="mx-2 mb-1 ">
+                @foreach ($post->tags as $tag)
+                    {{ $loop->first ? '' : ', ' }}
+                    <a href="#" class="text-sm">{{ $tag->name }}</a>
+                @endforeach
+            </div>
             <div class="p-0">
                 @if (isset($post->images) && !$post->images->isEmpty())
                     <x-post-carousel :post="$post" />
                 @endif
             </div>
-
         </div>
         <p class="p-3 card-text">
             <small class="text-muted">Posted
                 {{ $post->created_at->diffForHumans() }}
             </small>
         </p>
-
         <div class="d-flex flex-column">
             <x-post-comment :comments="$post->comments" />
         </div>

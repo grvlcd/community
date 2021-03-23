@@ -22,6 +22,19 @@
     text-align: center;
 }
 
+@media (max-width: 768px) {
+    .chip img {
+        display: none;
+    }
+
+    .chip {
+        background-color: #ffffff;
+    }
+
+    #image-container {
+    }
+}
+
 #image-container img {
     width: 150px;
     height: 150px;

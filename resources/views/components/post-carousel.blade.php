@@ -1,4 +1,4 @@
-<div id="carousel{{ $post->id }}" class="carousel slide carousel-fade" data-interval="false">
+<div id="carousel{{ $post->id }}" class="carousel slide carousel-fade">
     <div class="carousel-inner">
         @foreach ($post->images as $image)
         <div class="carousel-item {{ $loop->first ? 'active' : '' }}">

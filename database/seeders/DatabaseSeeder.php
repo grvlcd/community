@@ -37,8 +37,10 @@ class DatabaseSeeder extends Seeder
             ->each(function ($post) use ($users, $communities) {
                 $post->user_id = $users->random()->id;
                 $post->community_id = $communities->random()->id;
-                $tags = Tag::factory(mt_rand(1, 3))->post()->make();
+                $tags = Tag::factory(mt_rand(1, 3))->make();
+                $images = Image::factory(mt_rand(2, 4))->make();
                 $post->save();
+                $post->images()->saveMany($images);
                 $post->tags()->saveMany($tags);
             });
 
