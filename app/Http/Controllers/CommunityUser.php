@@ -15,4 +15,11 @@ class CommunityUser extends Controller
         $community->users()->attach($user, ['owner_id' => $community->owner[0]->id, 'members' => $members + 1]);
         return redirect()->route('communities.show', $community)->withSuccess('You\'re now joined to ' . $community->name);
     }
+
+
+
+    public function destroy(Request $request, Community $community)
+    {
+        dd($request);
+    }
 }

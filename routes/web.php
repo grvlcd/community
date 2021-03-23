@@ -11,6 +11,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\ManageCommunityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,9 @@ Route::middleware(['auth'])->group(function () {
     // Communities
     Route::resource('communities', CommunityController::class);
     Route::post('communities/{community}/join', [CommunityUser::class, 'store'])->name('community.join.store');
+    Route::delete('communities/{community}/leave', [CommunityUser::class, 'destroy'])->name('community.leave');
+    // Manage Own Community
+    Route::get('manage/communities', [ManageCommunityController::class, 'index'])->name('community.manage');
     // --
 
     // Comments

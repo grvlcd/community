@@ -39,4 +39,9 @@ class CommunityController extends Controller
         $community->users;
         return view('communities.show')->with(['community' => $community]);
     }
+
+    public function edit(Community $community)
+    {
+        return view('communities.edit')->with(['community' => $community]);
+    }
 }
