@@ -16,10 +16,11 @@
                         <button type="submit" class="p-0 btn btn-link text-danger">delete</button>
                     </form>
                 @endcan
+                <x-comment-replies :replies="$comment->replies" />
                 <form id="{{ $comment->id }}" action="{{ route('reply.comment', $comment) }}" method="POST"
                     style="display: none;">
                     @csrf
-                    <input class="form-control" placeholder="Write a reply..." type="text" name="reply">
+                    <input class="form-control" placeholder="Write a reply..." type="text" name="body">
                 </form>
             </div>
         </div>

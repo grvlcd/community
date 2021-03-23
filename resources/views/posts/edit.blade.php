@@ -60,7 +60,7 @@
                         <div class="mb-0 form-group row">
                             <div class="col-md-8 offset-md-4">
                                 <button type="button" class="btn btn-primary"
-                                    onclick="e.preventDefault(); document.getElementById('updatePostForm').submit();">
+                                    onclick="document.getElementById('updatePostForm').submit();">
                                     {{ __('Update!') }}
                                 </button>
                             </div>

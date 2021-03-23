@@ -60,5 +60,6 @@ Route::middleware(['auth'])->group(function () {
 
     // Replies
     Route::post('reply/{comment}', [ReplyController::class, 'store'])->name('reply.comment');
+    Route::delete('reply/{reply}/delete', [ReplyController::class, 'destroy'])->name('reply.destroy');
     // --
 });

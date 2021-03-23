@@ -9,6 +9,7 @@ use App\Models\Image;
 use App\Models\Post;
 use App\Models\Community;
 use App\Models\Tag;
+use App\Models\Reply;
 
 class DatabaseSeeder extends Seeder
 {
@@ -49,6 +50,13 @@ class DatabaseSeeder extends Seeder
                 $comment->user_id = $users->random()->id;
                 $comment->post_id = $posts->random()->id;
                 $comment->save();
+            });
+
+        $replies = Reply::factory()->count(50)->make()
+            ->each(function ($reply) use ($comments, $users) {
+                $reply->user_id = $users->random()->id;
+                $reply->comment_id = $comments->random()->id;
+                $reply->save();
             });
     }
 }
