@@ -1,8 +1,10 @@
 <div class="container">
     @foreach ($comments as $comment)
         <div class="px-2 py-1 mb-2 rounded bg-light text-dark">
-            <img class="rounded-circle" src="{{ asset('images/' . $comment->user->image->path) }}"
-                style="width: 25px; height: 25px">
+            @if (isset($comment->user->image->path))
+                <img class="rounded-circle" src="{{ asset('images/' . $comment->user->image->path) }}"
+                    style="width: 25px; height: 25px">
+            @endif
             {{ $comment->user->name }} <small
                 class="text-sm text-muted"><i>{{ $comment->created_at->diffForHumans() }}</i></small>
             <br>

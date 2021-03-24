@@ -2,8 +2,12 @@
 
 @section('content')
 <div class="mt-4 d-flex flex-column-reverse">
-    @foreach ($posts as $post)
+    @forelse ($posts as $post)
     <x-post-card :post="$post" />
-    @endforeach
+    @empty
+    <div class="container mt-4 text-center">
+        <h4>Join a community right now! <a href="{{ route('communities.index') }}">Click here</a></h4>
+    </div>
+    @endforelse
 </div>
 @endsection

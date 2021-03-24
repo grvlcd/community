@@ -91,9 +91,11 @@
                             <li class="nav-item dropdown">
                                 <div id="navbarDropdown" class="chip nav-link" role="button" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
-                                    <img class="border rounded-circle border-secondary"
-                                        src="{{ asset('images/' . Auth::user()->image->path) }}"
-                                        alt="{{ Auth::user()->name }}" width="24" height="24">
+                                    @if (isset(Auth::user()->image->path))
+                                        <img class="border rounded-circle border-secondary"
+                                            src="{{ asset('images/' . Auth::user()->image->path) }}"
+                                            alt="{{ Auth::user()->name }}" width="24" height="24">
+                                    @endif
                                     <a class="text-muted text-decoration-none dropdown-toggle" v-pre>
                                         {{ Auth::user()->name }}
                                     </a>
@@ -107,7 +109,7 @@
                                         {{ __('Manage Community') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
+                                        document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

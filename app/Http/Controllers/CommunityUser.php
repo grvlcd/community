@@ -16,10 +16,12 @@ class CommunityUser extends Controller
         return redirect()->route('communities.show', $community)->withSuccess('You\'re now joined to ' . $community->name);
     }
 
-
-
     public function destroy(Request $request, Community $community)
     {
-        dd($request);
+        $user = $request->user();
+        $members = $community->owner[0]->pivot->members;
+        $community->users()->detach($user, ['owner_id' => $community->owner[0]->id, 'members' => $members - 1]);
+        return redirect()->route('communities.show', $community)
+            ->withSuccess('You left the ' . $community->name);
     }
 }

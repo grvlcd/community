@@ -30,14 +30,22 @@
     .chip {
         background-color: #ffffff;
     }
-
-    #image-container {
-    }
 }
 
 #image-container img {
     width: 150px;
     height: 150px;
+}
+
+#image-container-community {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+
+#image-container-community img {
+    width: 100%;
+    height: 300px;
 }
 
 .deleteImageBtn {

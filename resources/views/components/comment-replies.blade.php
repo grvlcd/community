@@ -1,8 +1,10 @@
 <div class="container">
     @foreach ($replies as $reply)
         <div class="px-2 py-1 mb-2 rounded bg-light text-dark">
-            <img class="rounded-circle" src="{{ asset('images/' . $reply->user->image->path) }}"
-                style="width: 25px; height: 25px">
+            @if (isset($reply->user->image->path))
+                <img class="rounded-circle" src="{{ asset('images/' . $reply->user->image->path) }}"
+                    style="width: 25px; height: 25px">
+            @endif
             {{ $reply->user->name }} <small
                 class="text-sm text-muted"><i>{{ $reply->created_at->diffForHumans() }}</i></small>
             <br>
