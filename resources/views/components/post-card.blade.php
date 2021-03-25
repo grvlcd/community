@@ -17,9 +17,7 @@
                         <li class="nav-item dropdown">
                             <div id="navbarDropdown" class="nav-link" role="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                <a class="text-muted text-decoration-none dropdown-toggle" v-pre>
-
-                                </a>
+                                <a class="text-muted text-decoration-none dropdown-toggle" v-pre></a>
                             </div>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item text-primary" href="#">

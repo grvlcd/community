@@ -2,7 +2,7 @@
     <div class="carousel-inner">
         @foreach ($post->images as $image)
         <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-            <img src="{{ asset('images/' . $image->path) }}" width="100%" height="500px">
+            <img src="{{ asset('images/' . $image->path) }}" width="100%" height="100%">
         </div>
         @endforeach
     </div>

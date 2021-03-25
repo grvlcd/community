@@ -20,10 +20,13 @@ class PostController extends Controller
         ]);
         if ($request->hasFile('image')) {
             foreach ($request->image as $image) {
+                $image_canvas = Image::canvas(1200, 740, '#000000');
                 $img = $image->store('posts', 'images');
-                $image_resize = Image::make(storage_path('app/public/images/' . $img))->resize(1200, 730, function ($constraint) {
+                $image_resize = Image::make(storage_path('app/public/images/' . $img))->resize(1200, 740, function ($constraint) {
                     $constraint->aspectRatio();
-                })->save(storage_path('app/public/images/' . $img));
+                });
+                $image_canvas->insert($image_resize, 'center');
+                $image_canvas->save(storage_path('app/public/images/' . $img));
                 $post->images()->create([
                     'path' => 'posts/' . $image_resize->basename,
                 ]);
@@ -49,10 +52,13 @@ class PostController extends Controller
         $post->update($request->validated());
         if ($request->hasFile('image')) {
             foreach ($request->image as $image) {
+                $image_canvas = Image::canvas(1200, 740, '#000000');
                 $img = $image->store('posts', 'images');
-                $image_resize = Image::make(storage_path('app/public/images/' . $img))->resize(1200, 730, function ($constraint) {
+                $image_resize = Image::make(storage_path('app/public/images/' . $img))->resize(1200, 740, function ($constraint) {
                     $constraint->aspectRatio();
-                })->save(storage_path('app/public/images/' . $img));
+                });
+                $image_canvas->insert($image_resize, 'center');
+                $image_canvas->save(storage_path('app/public/images/' . $img));
                 $post->images()->create([
                     'path' => 'posts/' . $image_resize->basename,
                 ]);
