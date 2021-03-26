@@ -7,6 +7,7 @@ use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\CommunityUser;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\UserController;
@@ -56,6 +57,11 @@ Route::middleware(['auth'])->group(function () {
     // Manage Own Community
     Route::get('manage/communities', [ManageCommunityController::class, 'index'])->name('community.manage');
     // --
+
+    // Likes
+    Route::post('likes/{post}', [LikeController::class, 'store'])->name('likes.store');
+    Route::delete('likes/{post}/delete', [LikeController::class, 'destroy'])->name('likes.destroy');
+    //
 
     // Comments
     Route::post('comment/{post}', [CommentController::class, 'store'])->name('comment.post.store');

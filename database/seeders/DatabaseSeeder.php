@@ -10,6 +10,7 @@ use App\Models\Post;
 use App\Models\Community;
 use App\Models\Tag;
 use App\Models\Reply;
+use App\Models\Like;
 
 class DatabaseSeeder extends Seeder
 {
@@ -41,6 +42,13 @@ class DatabaseSeeder extends Seeder
                 $tags = Tag::factory(mt_rand(1, 3))->make();
                 $images = Image::factory(mt_rand(2, 4))->make();
                 $post->save();
+                Like::factory()->count(mt_rand(0, 3))->make()
+                    ->each(function ($like) use ($post) {
+                        $user = User::inRandomOrder()->take(1)->pluck('id');
+                        $like->user_id = $user[0];
+                        $like->post_id = $post->id;
+                        $like->save();
+                    });
                 $post->images()->saveMany($images);
                 $post->tags()->saveMany($tags);
             });

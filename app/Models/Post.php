@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Community;
 use App\Models\Comment;
 use App\Models\Tag;
+use App\Models\Like;
 
 class Post extends Model
 {
@@ -44,5 +45,10 @@ class Post extends Model
     public function tags()
     {
         return $this->morphMany(Tag::class, 'taggable');
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
     }
 }

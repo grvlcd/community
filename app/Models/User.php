@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use App\Models\Post;
 use App\Models\Image;
 use App\Models\Community;
+use App\Models\Like;
 
 class User extends Authenticatable
 {
@@ -57,5 +58,10 @@ class User extends Authenticatable
     public function communities()
     {
         return $this->belongsToMany(Community::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
     }
 }
