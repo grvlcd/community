@@ -82,6 +82,7 @@
                             </button>
                         </form>
 
+
                     @endif
                     <div class="px-1">
                         {{ count($post->likes) }}
