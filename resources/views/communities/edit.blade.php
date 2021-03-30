@@ -69,23 +69,26 @@
                             </div>
                         </form>
 
-                        <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right">{{ __('Current Cover') }}</label>
-                            <div class="col-12">
-                                <div class="flex-row flex-wrap d-flex justify-content-center">
-                                    <div id="image-container-community">
-                                        <img class="img-thumbnail"
-                                            src="{{ asset('images/' . $community->image->path) }}" />
-                                        <form action="{{ route('image.destroy', $community->image) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="deleteImageBtn btn btn-danger btn-sm"
-                                                type="submit">Delete</button>
-                                        </form>
+                        @if (isset($community->image))
+                            <div class="form-group row">
+                                <label class="col-md-4 col-form-label text-md-right">{{ __('Current Cover') }}</label>
+                                <div class="col-12">
+                                    <div class="flex-row flex-wrap d-flex justify-content-center">
+                                        <div id="image-container-community">
+                                            <img class="img-thumbnail"
+                                                src="{{ asset('images/' . $community->image->path) }}" />
+                                            <form action="{{ route('image.destroy', $community->image) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="deleteImageBtn btn btn-danger btn-sm"
+                                                    type="submit">Delete</button>
+                                            </form>
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
 
                         <div class="mb-0 form-group row">
                             <div class="col-md-8 offset-md-4">

@@ -41,4 +41,9 @@ class UserController extends Controller
     {
         return view('profile.edit');
     }
+
+    public function show(User $user)
+    {
+        return view('profile.show')->with(['user' => $user]);
+    }
 }

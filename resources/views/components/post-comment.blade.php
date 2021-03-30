@@ -4,9 +4,11 @@
             @if (isset($comment->user->image->path))
                 <img class="rounded-circle" src="{{ asset('images/' . $comment->user->image->path) }}"
                     style="width: 25px; height: 25px">
+            @else
+                <img id="profile-image" src="https://gravatar.com/avatar/404?d=mp" class="shadow-sm rounded-circle">
             @endif
-            {{ $comment->user->name }} <small
-                class="text-sm text-muted"><i>{{ $comment->created_at->diffForHumans() }}</i></small>
+            <x-user-link :user="$comment->user" />
+            <small class="text-sm text-muted"><i>{{ $comment->created_at->diffForHumans() }}</i></small>
             <br>
             {{ $comment->body }}
             <div>

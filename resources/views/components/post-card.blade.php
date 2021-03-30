@@ -9,7 +9,7 @@
                         </a>
                     </h5>
                     <h6 class="card-subtitle">
-                        {{ $post->user->name }}
+                        <x-user-link :user="$post->user" />
                     </h6>
                 </div>
                 <div>

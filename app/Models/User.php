@@ -55,6 +55,11 @@ class User extends Authenticatable
         return $this->morphOne(Image::class, 'imageable');
     }
 
+    public function cover()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
+
     public function communities()
     {
         return $this->belongsToMany(Community::class);

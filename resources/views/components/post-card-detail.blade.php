@@ -4,7 +4,8 @@
             <div class="d-flex justify-content-between">
                 <h5 class="card-title">
                     <a href="{{ route('communities.show', $post->community->id) }}">
-                        {{ $post->community->name }}</a> / {{ $post->user->name }}
+                        {{ $post->community->name }}</a> /
+                    <x-user-link :user="$post->user" />
                 </h5>
                 <ul class="ml-auto navbar-nav">
                     <li class="nav-item dropdown">

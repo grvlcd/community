@@ -53,3 +53,9 @@
     bottom: 10px;
     right: 10px;
 }
+
+#profile-image {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 3px;
+}

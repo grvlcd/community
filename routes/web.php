@@ -38,6 +38,7 @@ Route::middleware(['auth'])->group(function () {
     // User Profile
     Route::get('profile/edit', [UserController::class, 'edit'])->name('profile.edit');
     Route::put('profile/update', [UserController::class, 'update'])->name('profile.update');
+    Route::get('profile/{user}', [UserController::class, 'show'])->name('profile.show');
     // --
 
     // Posts
